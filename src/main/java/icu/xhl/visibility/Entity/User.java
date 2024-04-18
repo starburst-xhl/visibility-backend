@@ -1,4 +1,4 @@
-package icu.xhl.visibility;
+package icu.xhl.visibility.Entity;
 
 import java.sql.Timestamp;
 
@@ -7,9 +7,8 @@ public class User {
     private String username;
     private String password;
     private String role;
-    private Timestamp createat;
-    private int phonenbr;
-    private String position;
+    private Timestamp create_at;
+    private String phone_nbr;
 
     public int getId() {
         return id;
@@ -43,27 +42,20 @@ public class User {
         this.role = role;
     }
 
-    public Timestamp getCreateat() {
-        return createat;
+    public Timestamp getCreate_at() {
+        return create_at;
     }
 
-    public void setCreateat(Timestamp createat) {
-        this.createat = createat;
+    public void setCreate_at(Timestamp create_at) {
+        this.create_at = create_at;
     }
 
-    public int getPhonenbr() {
-        return phonenbr;
+    public String getPhone_nbr() {
+        return phone_nbr;
     }
 
-    public void setPhonenbr(int phonenbr) {
-        this.phonenbr = phonenbr;
+    public void setPhone_nbr(String phone_nbr) {
+        this.phone_nbr = phone_nbr;
     }
 
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
 }
