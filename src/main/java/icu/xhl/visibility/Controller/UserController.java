@@ -19,4 +19,9 @@ public class UserController {
     public List<User> selectAll() {
         return userMapper.selectAll();
     }
+
+    @GetMapping("/selectById")
+    public User selectById(int id) {
+        return userMapper.selectById(id);
+    }
 }
