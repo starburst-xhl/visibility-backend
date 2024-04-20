@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping
-    public Map<String, Object> selectById(@RequestParam String username, @RequestHeader(value = "Authorization")String token) {
+    public Map<String, Object> selectByUsername(@RequestParam String username, @RequestHeader(value = "Authorization")String token) {
         Map<String,Object> map = new HashMap<>();
         if(userService.selectByUsername(username,token) == null || !TokenUtil.verifyManager(token)) {
             map.put("code",101);
@@ -95,7 +95,8 @@ public class UserController {
     }
 
     @DeleteMapping
-    public Map<String, Object> delete(@RequestHeader(value = "Authorization")String token,String username) {
+    public Map<String, Object> delete(@RequestHeader(value = "Authorization")String token,
+                                      @RequestParam String username) {
         Map<String,Object> map = new HashMap<>();
         if (TokenUtil.verifyManager(token)) {
             int id = userService.selectByUsername(username,token).getId();
