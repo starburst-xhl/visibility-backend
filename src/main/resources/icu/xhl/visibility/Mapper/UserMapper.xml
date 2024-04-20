@@ -3,10 +3,25 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="icu.xhl.visibility.Mapper.UserMapper">
+    <update id="updateInfo">
+        update users set username = #{username}, password = #{password},  phone_nbr = #{phoneNbr} where id = #{id}
+    </update>
+    <update id="updatePassword">
+        update users set password = #{password} where id = #{id}
+    </update>
+    <update id="updateUser">
+        update users set username = #{username}, password = #{password}, phone_nbr = #{phoneNbr},role = #{role} where id = #{id}
+    </update>
+    <delete id="delete">
+        delete from users where id = #{id}
+    </delete>
     <select id="selectAll" resultType="icu.xhl.visibility.Entity.User">
         select * from users
     </select>
-    <select id="selectById" resultType="icu.xhl.visibility.Entity.User">
-        select * from users where id = #{id}
+    <select id="selectByUsername" resultType="icu.xhl.visibility.Entity.User">
+        select * from users where username = #{username}
     </select>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into users(username, password, phone_nbr, role, create_at) values(#{username}, #{password}, #{phoneNbr}, #{role}, #{createAt})
+    </insert>
 </mapper>
