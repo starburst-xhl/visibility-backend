@@ -31,7 +31,8 @@ public class UserController {
     }
 
     @GetMapping
-    public Map<String, Object> selectByUsername(@RequestParam String username, @RequestHeader(value = "Authorization")String token) {
+    public Map<String, Object> selectByUsername(@RequestParam String username,
+                                                @RequestHeader(value = "Authorization")String token) {
         Map<String,Object> map = new HashMap<>();
         if(userService.selectByUsername(username,token) == null || !TokenUtil.verifyManager(token)) {
             map.put("code",101);

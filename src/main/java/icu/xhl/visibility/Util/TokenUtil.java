@@ -6,7 +6,6 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import icu.xhl.visibility.Mapper.LoginMapper;
 import jakarta.annotation.PostConstruct;
-import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -134,6 +133,6 @@ public class TokenUtil {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-            }
+        }
     }
 }

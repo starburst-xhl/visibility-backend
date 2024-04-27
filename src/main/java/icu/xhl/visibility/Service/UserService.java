@@ -29,7 +29,7 @@ public class UserService implements UserMapper {
     }
 
     @Override
-    public Object updateInfo(int id, String username, String password, String phoneNbr) {
+    public int updateInfo(int id, String username, String password, String phoneNbr) {
         return userMapper.updateInfo(id,username, password, phoneNbr);
     }
 
@@ -39,12 +39,12 @@ public class UserService implements UserMapper {
     }
 
     @Override
-    public Object updatePassword(int id, String password) {
+    public int updatePassword(int id, String password) {
         return userMapper.updatePassword(id, password);
     }
 
     @Override
-    public Object updateUser(int id, String username, String password, String phoneNbr, String role) {
+    public int updateUser(int id, String username, String password, String phoneNbr, String role) {
         return userMapper.updateUser(id, username, password, phoneNbr, role);
     }
 
