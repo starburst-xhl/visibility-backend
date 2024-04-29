@@ -13,7 +13,7 @@ public interface UserMapper {
 
     int updateInfo(int id,String username, String password, String phoneNbr);
 
-    Object delete(int id);
+    int delete(int id);
 
     int updatePassword(int id, String password);
 

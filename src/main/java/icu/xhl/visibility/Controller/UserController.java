@@ -16,7 +16,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/All")
+    @GetMapping(value = "/all")
     public Map<String,Object> selectAll(@RequestHeader(value = "Authorization")String token) {
         Map<String,Object> map = new HashMap<>();
         if(userService.selectAll(token) == null) {
@@ -27,6 +27,7 @@ public class UserController {
             map.put("msg","验证成功");
             map.put("data",userService.selectAll(token));
         }
+        System.out.println(map);
         return map;
     }
 
@@ -42,6 +43,7 @@ public class UserController {
             map.put("msg","验证成功");
             map.put("data",userService.selectByUsername(username,token));
         }
+        System.out.println(map);
         return map;
     }
 
@@ -56,6 +58,7 @@ public class UserController {
             map.put("code",101);
             map.put("msg","没有权限");
         }
+        System.out.println(map);
         return map;
     }
 
@@ -73,18 +76,19 @@ public class UserController {
             map.put("code",101);
             map.put("msg","没有权限");
         }
+        System.out.println(map);
         return map;
     }
 
     @PutMapping
     public Map<String, Object> updateInfoManage(@RequestHeader(value = "Authorization")String token,
+                                                @RequestParam int id,
                                                 @RequestParam String username,
                                                 @RequestParam String password,
                                                 @RequestParam String phone_nbr,
                                                 @RequestParam String role) {
         Map<String,Object> map = new HashMap<>();
         if (TokenUtil.verifyManager(token)) {
-            int id = userService.selectByUsername(username,token).getId();
             map.put("code",200);
             map.put("msg","验证成功");
             map.put("data",userService.updateUser(id,username,password,phone_nbr,role));
@@ -92,15 +96,15 @@ public class UserController {
             map.put("code",101);
             map.put("msg","没有权限");
         }
+        System.out.println(map);
         return map;
     }
 
     @DeleteMapping
     public Map<String, Object> delete(@RequestHeader(value = "Authorization")String token,
-                                      @RequestParam String username) {
+                                      @RequestParam int id) {
         Map<String,Object> map = new HashMap<>();
         if (TokenUtil.verifyManager(token)) {
-            int id = userService.selectByUsername(username,token).getId();
             map.put("code",200);
             map.put("msg","验证成功");
             map.put("data",userService.delete(id));
@@ -108,6 +112,7 @@ public class UserController {
             map.put("code",101);
             map.put("msg","没有权限");
         }
+        System.out.println(map);
         return map;
     }
 
@@ -127,6 +132,7 @@ public class UserController {
             map.put("code",101);
             map.put("msg","没有权限");
         }
+        System.out.println(map);
         return map;
     }
 }

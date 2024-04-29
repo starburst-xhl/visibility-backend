@@ -34,7 +34,7 @@ public class UserService implements UserMapper {
     }
 
     @Override
-    public Object delete(int id) {
+    public int delete(int id) {
         return userMapper.delete(id);
     }
 

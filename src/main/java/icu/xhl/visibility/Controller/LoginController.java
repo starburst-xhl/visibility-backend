@@ -29,6 +29,7 @@ public class LoginController {
             map.put("code",200);
             map.put("msg","登录成功");
             map.put("token", TokenUtil.token(username, password));
+            map.put("role", loginService.selectRoleByUsername(username));
         }
         System.out.println(map);
         return map;
@@ -41,11 +42,13 @@ public class LoginController {
             map.put("code",200);
             map.put("msg","验证成功");
             map.put("isLogin", true);
+            map.put("role", loginService.selectRoleByUsername(TokenUtil.getUsername(token)));
         } else {
             map.put("code",101);
             map.put("msg","验证失败");
             map.put("isLogin", false);
         }
+        System.out.println(map);
         return map;
     }
 }
