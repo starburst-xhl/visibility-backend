@@ -49,7 +49,7 @@ public class UserService implements UserMapper {
     }
 
     @Override
-    public Object insert(String username, String password, String phoneNbr, String role, Timestamp createAt) {
+    public int insert(String username, String password, String phoneNbr, String role, Timestamp createAt) {
         return userMapper.insert(username, password, phoneNbr, role, createAt);
     }
 }

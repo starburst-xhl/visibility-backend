@@ -21,7 +21,7 @@
     <select id="selectByUsername" resultType="icu.xhl.visibility.Entity.User">
         select * from users where username = #{username}
     </select>
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert">
         insert into users(username, password, phone_nbr, role, create_at) values(#{username}, #{password}, #{phoneNbr}, #{role}, #{createAt})
     </insert>
 </mapper>

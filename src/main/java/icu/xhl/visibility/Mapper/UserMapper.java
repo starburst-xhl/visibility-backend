@@ -19,5 +19,5 @@ public interface UserMapper {
 
     int updateUser(int id, String username, String password, String phoneNbr, String role);
 
-    Object insert(String username, String password, String phoneNbr, String role, Timestamp createAt);
+    int insert(String username, String password, String phoneNbr, String role, Timestamp createAt);
 }
