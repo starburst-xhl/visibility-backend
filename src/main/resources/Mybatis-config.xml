@@ -17,5 +17,6 @@
     <mappers>
         <mapper resource="icu/xhl/visibility/Mapper/UserMapper.xml"/>
         <mapper resource="icu/xhl/visibility/Mapper/LoginMapper.xml"/>
+        <mapper resource="icu/xhl/visibility/Mapper/PhotoMapper.xml"/>
     </mappers>
 </configuration>
