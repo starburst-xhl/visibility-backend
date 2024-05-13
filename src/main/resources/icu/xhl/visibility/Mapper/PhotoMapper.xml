@@ -6,4 +6,35 @@
     <select id="getPhotoUrl" parameterType="int" resultType="string">
         SELECT path FROM photos WHERE id = #{id}
     </select>
+    <select id="getPhotoById" parameterType="int" resultType="icu.xhl.visibility.Entity.Photo">
+        SELECT * FROM photos WHERE id = #{id}
+    </select>
+    <select id="getPhotoStatusDispense" resultType="icu.xhl.visibility.Entity.PhotoStatusDispense">
+        SELECT *
+        FROM photos
+                 LEFT JOIN dispense ON photos.id = dispense.photoid
+                 LEFT JOIN photostatus ON photos.id = photostatus.photoid
+                 LEFT JOIN users ON dispense.userid = users.id;
+    </select>
+    <select id="getPhotosByDateRange" parameterType="map" resultType="icu.xhl.visibility.Entity.Photo">
+        SELECT * FROM photos WHERE date BETWEEN #{startDate} AND #{endDate}
+    </select>
+    <insert id="addPhoto" parameterType="icu.xhl.visibility.Entity.Photo">
+        INSERT INTO photos (location, date, visibility) VALUES (#{location}, #{date}, #{visibility})
+    </insert>
+    <insert id="dispensePhoto" parameterType="int">
+        INSERT INTO dispense (photoid, userid) VALUES (#{photoid}, #{userid})
+    </insert>
+    <select id="getPhotosByUser" parameterType="int" resultType="icu.xhl.visibility.Entity.Photo">
+        SELECT * FROM photos WHERE id IN (SELECT photoid FROM dispense WHERE userid = #{userid}) AND (select id from photostatus where photoid = photos.id and status = 0)
+    </select>
+    <insert id="addPhotoStatus" parameterType="icu.xhl.visibility.Entity.PhotoStatus">
+        INSERT INTO photostatus (photoid, status,new_visibility,update_at) VALUES (#{photoid}, #{status}, #{new_visibility}, #{update_at})
+    </insert>
+    <update id="passPhoto" parameterType="icu.xhl.visibility.Entity.PhotoStatus">
+        update photostatus set status = 1,update_at=#{update_at},new_visibility=#{new_visibility} where photoid = #{photoid}
+    </update>
+    <update id="doubleCheckPhoto" parameterType="icu.xhl.visibility.Entity.PhotoStatus">
+        update photostatus set status = 2,update_at=#{update_at} where photoid = #{photoid}
+    </update>
 </mapper>

@@ -10,6 +10,8 @@ public class User {
     private Timestamp create_at;
     private String phone_nbr;
 
+    private int available;
+
     public int getId() {
         return id;
     }
@@ -58,4 +60,11 @@ public class User {
         this.phone_nbr = phone_nbr;
     }
 
+    public int getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(int available) {
+        this.available = available;
+    }
 }

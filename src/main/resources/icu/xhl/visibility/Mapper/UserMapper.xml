@@ -12,11 +12,11 @@
     <update id="updateUser">
         update users set username = #{username}, password = #{password}, phone_nbr = #{phoneNbr},role = #{role} where id = #{id}
     </update>
-    <delete id="delete">
-        delete from users where id = #{id}
-    </delete>
+    <update id="delete">
+        update users set available = 0 where id = #{id}
+    </update>
     <select id="selectAll" resultType="icu.xhl.visibility.Entity.User">
-        select * from users
+        select id,username,password,role,create_at,phone_nbr from users where available = 1
     </select>
     <select id="selectByUsername" resultType="icu.xhl.visibility.Entity.User">
         select * from users where username = #{username}
@@ -24,4 +24,7 @@
     <insert id="insert">
         insert into users(username, password, phone_nbr, role, create_at) values(#{username}, #{password}, #{phoneNbr}, #{role}, #{createAt})
     </insert>
+    <select id="selectByRole" resultType="icu.xhl.visibility.Entity.User">
+        select * from users where role = #{role} and available = 1
+    </select>
 </mapper>

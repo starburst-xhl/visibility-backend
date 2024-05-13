@@ -52,4 +52,8 @@ public class UserService implements UserMapper {
     public int insert(String username, String password, String phoneNbr, String role, Timestamp createAt) {
         return userMapper.insert(username, password, phoneNbr, role, createAt);
     }
+    @Override
+    public List<User> selectByRole(String role) {
+        return userMapper.selectByRole(role);
+    }
 }

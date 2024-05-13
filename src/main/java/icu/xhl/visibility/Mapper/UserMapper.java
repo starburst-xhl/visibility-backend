@@ -20,4 +20,6 @@ public interface UserMapper {
     int updateUser(int id, String username, String password, String phoneNbr, String role);
 
     int insert(String username, String password, String phoneNbr, String role, Timestamp createAt);
+
+    List<User> selectByRole(String role);
 }
