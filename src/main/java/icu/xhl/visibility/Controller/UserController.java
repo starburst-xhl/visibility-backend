@@ -16,8 +16,26 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private TokenUtil tokenUtil;
+
     @GetMapping(value = "/all")
     public Map<String,Object> selectAll(@RequestHeader(value = "Authorization")String token) {
+        Map<String,Object> map = new HashMap<>();
+        if(userService.selectAll(token) == null) {
+            map.put("code",101);
+            map.put("msg","没有权限");
+        } else {
+            map.put("code",200);
+            map.put("msg","验证成功");
+            map.put("data",userService.selectAll(token));
+        }
+        System.out.println(map);
+        return map;
+    }
+
+    @GetMapping(value = "/allinfo")
+    public Map<String,Object> selectAllInfo(@RequestHeader(value = "Authorization")String token){
         Map<String,Object> map = new HashMap<>();
         if(userService.selectAll(token) == null) {
             map.put("code",101);

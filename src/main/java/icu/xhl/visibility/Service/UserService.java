@@ -17,7 +17,7 @@ public class UserService implements UserMapper {
 
     @Override
     public List<User> selectAll(String token) {
-        if (!TokenUtil.verifyManager(token)) {
+        if (!TokenUtil.verify(token)) {
             return null;
         }
         return userMapper.selectAll(token);
